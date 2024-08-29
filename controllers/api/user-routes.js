@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
+// THE FOLLOWING CODE IS BASED OFF OF EXAMPLE CODE PROVIDED BY edX !!
 // CREATE new user
 router.post("/", async (req, res) => {
   try {
@@ -47,6 +48,7 @@ router.post("/login", async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.user_id = userData.id;
 
       res
         .status(200)
