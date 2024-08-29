@@ -3,8 +3,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Blog</title>
-    <link rel="stylesheet" type="text/css" href="/css/dist/output.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: "#eff6ff",
+          100: "#dbeafe",
+          200: "#bfdbfe",
+          300: "#93c5fd",
+          400: "#60a5fa",
+          500: "#3b82f6",
+          600: "#2563eb",
+          700: "#1d4ed8",
+          800: "#1e40af",
+          900: "#1e3a8a",
+          950: "#172554",
+        },
+      },
+    },
+    fontFamily: {
+      body: [
+        "Inter",
+        "ui-sans-serif",
+        "system-ui",
+        "-apple-system",
+        "system-ui",
+        "Segoe UI",
+        "Roboto",
+        "Helvetica Neue",
+        "Arial",
+        "Noto Sans",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji",
+      ],
+      sans: [
+        "Inter",
+        "ui-sans-serif",
+        "system-ui",
+        "-apple-system",
+        "system-ui",
+        "Segoe UI",
+        "Roboto",
+        "Helvetica Neue",
+        "Arial",
+        "Noto Sans",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji",
+      ],
+    },
+  }
+      }
+    </script>
   </head>
   <body>
     <header class="text-gray-600 body-font">
@@ -33,12 +91,19 @@
         <nav
           class="md:ml-auto flex flex-wrap items-center text-base justify-center"
         >
-          <a class="mr-5 hover:text-gray-900">Home</a>
+          <a href="/" class="mr-5 hover:text-gray-900">Home</a>
           <a href="/dashboard" class="mr-5 hover:text-gray-900">Dashboard</a>
-          <a class="mr-5 hover:text-gray-900">Logout</a>
+          {{#if loggedIn}}
+          <button id="logout" class="mr-5 hover:text-gray-900">Logout</button>
+          {{else}}
+           <a href= "/login" class="mr-5 hover:text-gray-900">Login</a>
+          {{/if}}
         </nav>
       </div>
     </header>
     {{{body}}}
   </body>
+  {{#if loggedIn}}
+  <script src="./js/logout.js"></script>
+  {{/if}}
 </html>
