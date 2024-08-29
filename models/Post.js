@@ -17,6 +17,10 @@ Post.init(
     },
     content: {
       type: DataTypes.STRING,
+      defaultValue: DataTypes.NOW,
+    },
+    dateCreated: {
+      type: DataTypes.DATE,
     },
     user_id: {
       type: DataTypes.INTEGER,
