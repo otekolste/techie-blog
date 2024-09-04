@@ -13,9 +13,24 @@ router.post("/", async (req, res) => {
     req.session.save(() => {
       res.status(200).json(dbPost);
     });
-  } catch (err) {
+  } catch (e) {
     console.log(err);
-    res.status(500).json(err);
+    res.status(500).json(e);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    const dbPost = await Post.findByPk(req.params.id);
+    if (!dbPost) {
+      res.status(404).json("Unable to find post...");
+    }
+    dbPost.title = req.body.title;
+    dbPost.content = req.body.content;
+    await dbPost.save({ fields: ["title", "content"] });
+    res.status(200).json(dbPost);
+  } catch (e) {
+    res.status(500).json(e);
   }
 });
 
