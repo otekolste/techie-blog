@@ -22,14 +22,36 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET HTML route for dashboard
 router.get("/dashboard", async (req, res) => {
-  if (!req.session.logged_in) {
+  if (!req.session.loggedIn) {
     res.redirect("/login");
   } else {
-    // TODO: RENDER USER'S POSTS AS WELL AS BUTTON TO CREATE NEW POST
+    try {
+      const userPostData = await Post.findAll({
+        where: {
+          user_id: req.session.user_id,
+        },
+        include: [
+          {
+            model: User,
+            attributes: ["username"],
+          },
+        ],
+      });
+      const posts = userPostData.map((post) => post.get({ plain: true }));
+      res.render("dashboard", {
+        posts,
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id,
+      });
+    } catch (e) {
+      res.status(500).json(e);
+    }
   }
 });
 
+// GET HTML route for login form
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
