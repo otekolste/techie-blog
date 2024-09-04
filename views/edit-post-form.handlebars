@@ -21,7 +21,7 @@
             <button
             type="submit"
             id="newPostButton"
-            onclick="addPost()"
+            onclick="deletePost()"
             class="w-full text-white bg-red-600 hover:bg-primary-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
             Delete
             </button>
@@ -41,7 +41,7 @@
         const fetchURL = '/api/posts/' + {{post.id}}
             const response = await fetch(fetchURL, {
                 method: 'PUT',
-                body: JSON.stringify({ title: title.value, content: content.value, user_id: {{user_id}} }),
+                body: JSON.stringify({ title: title.value, content: content.value }),
                 headers: { "Content-Type": "application/json" }
             });
 
@@ -54,6 +54,19 @@
     else{
         alert("Neither field can be blank!");
     }
+    }
+
+    async function deletePost() {
+        event.preventDefault();
+        const fetchURL = '/api/posts/' + {{post.id}}
+        const response = await fetch(fetchURL, {
+            method: 'DELETE',
+        })
+        if (response.ok) {
+                document.location.replace("/dashboard");
+        } else {
+            alert("An error occurred deleting post");
+        }
     }
 
 </script>

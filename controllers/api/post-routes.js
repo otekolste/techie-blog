@@ -34,4 +34,17 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const dbPost = await Post.findByPk(req.params.id);
+    if (!dbPost) {
+      res.status(404).json("Unable to find post...");
+    }
+    await dbPost.destroy();
+    res.status(200).json("Deleted post.");
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+
 module.exports = router;
