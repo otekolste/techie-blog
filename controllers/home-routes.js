@@ -66,6 +66,24 @@ router.get("/newpost", async (req, res) => {
   }
 });
 
+router.get("/editpost/:id", async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
+  } else {
+    try {
+      const postData = await Post.findByPk(req.params.id);
+      const post = postData.get({ plain: true });
+      res.render("edit-post-form", {
+        post,
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id,
+      });
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+});
+
 // GET HTML route for login form
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
