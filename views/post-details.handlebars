@@ -33,20 +33,18 @@
         {{/each}}
 </div>
 <script>
-    async function addComment() {
-        console.log('clicked!');
-        console.log({{user_id}});
+    async function addComment() { // Function to add comment to post
         event.preventDefault();
-        const comment = document.querySelector("#comment");
+        const comment = document.querySelector("#comment"); // Get comment content from form
 
  if (comment) {
-            const response = await fetch('/api/comment', {
+            const response = await fetch('/api/comment', { // If field is filled, create new POST request to create a new comment
                 method: 'POST',
                 body: JSON.stringify({ comment: comment.value, user_id: {{user_id}}, post_id: {{post.id}} }),
                 headers: { "Content-Type": "application/json" }
             });
 
-            if (response.ok) {
+            if (response.ok) { // Redirect back to post page to display updated comment on a success
                 document.location.replace("/post/" + {{post.id}});
             } else {
                 alert("An error occurred adding comment");

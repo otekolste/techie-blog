@@ -6,11 +6,11 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const routes = require("./controllers");
 const sequelize = require("./config/connection");
-// const helpers = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Session information
 const sess = {
   secret: "Super secret secret",
   cookie: {},
@@ -21,8 +21,11 @@ const sess = {
   }),
 };
 
+// Middlewares
+
 app.use(session(sess));
 
+// Setting up handlebars for usage
 const hbs = exphbs.create({});
 
 app.engine("handlebars", hbs.engine);
@@ -34,6 +37,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
+// Sync database, then start app
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });

@@ -32,12 +32,13 @@
 </section>
 
 <script>
-    async function updatePost() {
+    async function updatePost() { // Function to update post
         event.preventDefault();
+        // Get title and content information from form
         const title = document.querySelector("#title");
         const content = document.querySelector('#content');
 
- if (title && content) {
+ if (title && content) { // If both title and content are filled, create new PUT request to edit the corresponding post
         const fetchURL = '/api/posts/' + {{post.id}}
             const response = await fetch(fetchURL, {
                 method: 'PUT',
@@ -45,7 +46,7 @@
                 headers: { "Content-Type": "application/json" }
             });
 
-            if (response.ok) {
+            if (response.ok) { // On success, redirect to dashboard 
                 document.location.replace("/dashboard");
             } else {
                 alert("An error occurred updating post");
@@ -56,13 +57,13 @@
     }
     }
 
-    async function deletePost() {
+    async function deletePost() { // Function to delete a post
         event.preventDefault();
         const fetchURL = '/api/posts/' + {{post.id}}
-        const response = await fetch(fetchURL, {
+        const response = await fetch(fetchURL, { // Create DELETE request to delete post
             method: 'DELETE',
         })
-        if (response.ok) {
+        if (response.ok) { // On success, redirect to dashboard
                 document.location.replace("/dashboard");
         } else {
             alert("An error occurred deleting post");
