@@ -1,3 +1,5 @@
+// THE FOLLOWING CODE IS BASED OFF OF EXAMPLE CODE PROVIDED BY edX
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
 

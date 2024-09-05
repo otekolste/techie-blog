@@ -1,12 +1,14 @@
 # Techie Blog!
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Description
 
 Welcome to the Techie Blog! This platform allows users to connect with other developers by creating accounts, creating posts, and commenting on others' posts; users can also edit and delete their existing posts. This project was built using TailwindCSS, Sequelize, Express, Node.js, and PostgreSQL, and was the result of my practicing full-stack development, combining frontend and backend development to create a functioning application!
 
 ## Usage
 
-Go [here]() to check it out!
+Go [here](https://techie-blog-w2h7.onrender.com/) to check it out!
 
 When you open the site, you should see the homepage as follows. To do anything on this site other than view the front page, you need to create an account. You can click "login" or any of the links and you will be redirected to the homepage.
 
@@ -42,7 +44,24 @@ If you change your mind about what you've posted, simply click on that post link
 
 ## Credits
 
-Code used:
+### Packages used:
+
+- [TailwindCSS](https://tailwindcss.com/)
+- [Node.js](https://nodejs.org/en) and [Express](https://expressjs.com/)
+- [Express handlebars](https://www.npmjs.com/package/express-handlebars)
+- [Express Session](https://www.npmjs.com/package/express-session)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [Sequelize](https://www.npmjs.com/package/sequelize)
+- [PG](https://www.npmjs.com/package/pg)
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+
+This site is also hosted using the free tier of Render.
+
+### Code referenced:
+
 All of the styling was created using [tailblocks](https://tailblocks.cc/), which can be viewed here! (Everything in the views directory)
+The login.js, logout.js (public/js), and user-routes.js (controllers/api) were based off of instructional code provided by edX.
 
 ## License
+
+This project is covered by the MIT license. For more information, click the badge at the top of this file or check out the LICENSE file in the root directory.

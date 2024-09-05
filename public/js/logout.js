@@ -1,3 +1,5 @@
+// THE FOLLOWING CODE IS BASED OFF OF EXAMPLE CODE PROVIDED BY edX
+
 const logout = async () => {
   // Make POST request to log out
   const response = await fetch("/api/users/logout", {
